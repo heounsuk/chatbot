@@ -1,0 +1,59 @@
+version: '3.5'
+services:
+  backend:
+    build:
+      context: backend
+      dockerfile: ./Dockerfile
+      args:
+      - NODE_ENV=development
+    command: npm run start-watch
+    # environment:
+    #   - DATABASE_DB=example
+    #   - DATABASE_USER=root
+    #   - DATABASE_PASSWORD=/run/secrets/db-password
+    #   - DATABASE_HOST=db
+    #   - NODE_ENV=development
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      # - 80:80
+      - "127.0.0.1:5000:5000"
+      - 8080:8080
+      # - 9229:9229
+      # - 9230:9230
+    # secrets:
+    #   - db-password
+    volumes:
+      - ./backend/src:/code/src:ro
+      - ./backend/package.json:/code/package.json
+      - ./backend/package-lock.json:/code/package-lock.json
+      # - back-notused:/opt/app/node_modules
+    networks:
+      - public
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.7
+    ports:
+      - 3306:3306
+    volumes:
+      - ~/apps/mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=S3cret
+      - MYSQL_PASSWORD=An0thrS3crt
+      - MYSQL_USER=citizix_user
+      - MYSQL_DATABASE=citizix_db
+    networks:
+      - public
+
+networks:
+  public:
+    driver: bridge
+
+# volumes:
+#   back-notused:
+#   db-data:
+# secrets:
+#   db-password:
+#     file: db/password.txt
