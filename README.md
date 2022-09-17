@@ -14,7 +14,7 @@ docker-compose down
 
 ## How to test
 ```
-curl -v localhost:8080
+curl -v localhost:8080/desserts
 ```
 ## Reference
  * [nodejs-docker-webapp](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/)
