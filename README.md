@@ -15,7 +15,7 @@ docker-compose down
 ## How to test
 
 go to browser url, localhost:8080 
-![alt text]([https://www.webpagescreenshot.info/image-url/cIdjPW0X5](https://www.webpagescreenshot.info/image-url/SB1My7Z8r))
+![alt text]([https://storage.googleapis.com/openscreenshot/r%2F8%2FZ/SB1My7Z8r.png])
 
 
 ## Reference
