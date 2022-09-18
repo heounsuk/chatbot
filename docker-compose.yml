@@ -1,8 +1,8 @@
 version: '3.5'
 services:
-  backend:
+  frontend:
     build:
-      context: backend
+      context: frontend
       dockerfile: ./Dockerfile
       args:
       - NODE_ENV=development
@@ -12,9 +12,9 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./backend/src:/code/src:ro
-      - ./backend/package.json:/code/package.json
-      - ./backend/package-lock.json:/code/package-lock.json
+      - ./frontend/src:/code/src:ro
+      - ./frontend/package.json:/code/package.json
+      - ./frontend/package-lock.json:/code/package-lock.json
     networks:
       - public
     depends_on:
